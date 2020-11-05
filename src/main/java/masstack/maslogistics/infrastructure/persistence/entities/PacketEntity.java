@@ -9,7 +9,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "packets")
 public class PacketEntity implements Serializable {
-
     @Id
     private UUID Id = UUID.randomUUID();
 
