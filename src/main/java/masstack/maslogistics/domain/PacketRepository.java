@@ -1,5 +1,5 @@
 package masstack.maslogistics.domain;
 
-public interface PacketManagementRepository {
+public interface PacketRepository {
     void save(Packet packet);
 }
