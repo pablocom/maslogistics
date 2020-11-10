@@ -1,6 +1,6 @@
 package masstack.maslogistics.infrastructure.persistence.entities;
 
-import org.hibernate.annotations.GenericGenerator;
+import masstack.maslogistics.domain.packageAggregate.Packet;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,9 +10,18 @@ import java.util.UUID;
 @Table(name = "packets")
 public class PacketEntity implements Serializable {
     @Id
-    private UUID Id = UUID.randomUUID();
-
+    private UUID Id;
+    private String description;
     private String deliveryStatus = "defaultValue";
+
+    public PacketEntity(Packet packet) {
+        this.Id = UUID.randomUUID();
+        this.description = packet.getDescription();
+        this.deliveryStatus = packet.getDeliveryStatus();
+    }
+
+    // Hibernate required default constructor
+    public PacketEntity() {}
 
     public String getDeliveryStatus() {
         return deliveryStatus;
@@ -24,5 +33,9 @@ public class PacketEntity implements Serializable {
 
     public UUID getId() {
         return Id;
+    }
+
+    public Packet toDomain() {
+        return new Packet(this.Id, this.description, this.deliveryStatus);
     }
 }

@@ -1,31 +1,43 @@
 package masstack.maslogistics.api;
 
-import masstack.maslogistics.domain.Packet;
-import masstack.maslogistics.domain.PacketRepository;
-import masstack.maslogistics.infrastructure.persistence.entities.PacketEntity;
+import masstack.maslogistics.domain.packageAggregate.Packet;
+import masstack.maslogistics.domain.services.PacketManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("packet")
 public class PacketController {
-    private PacketRepository packetRepository;
+    private PacketManagementService packetManagementService;
 
     @Autowired
-    public PacketController(PacketRepository packetRepository) {
-        this.packetRepository = packetRepository;
+    public PacketController(PacketManagementService packetManagementService) {
+        this.packetManagementService = packetManagementService;
     }
 
-    @GetMapping
-    public Packet GetPacket() {
-        return new Packet();
+    @GetMapping(value = "{id}")
+    public ResponseEntity<PacketResponse> GetPacket(@PathVariable String id) {
+        var packetResponse = PacketResponse.fromAggregate(this.packetManagementService.getPacket(id).get());
+        return ResponseEntity.ok(packetResponse);
     }
 
     @PostMapping
-    public void CreatePacket() {
-        this.packetRepository.save(new Packet());
+    public ResponseEntity<String> CreatePacket(@RequestBody CreatePacketRequest request) {
+        this.packetManagementService.createPacket(request.getDescription());
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+}
+
+final class CreatePacketRequest {
+    private String description;
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    String getDescription() {
+        return description;
     }
 }
