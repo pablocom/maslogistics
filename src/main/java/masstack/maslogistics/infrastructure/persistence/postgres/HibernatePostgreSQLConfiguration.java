@@ -1,4 +1,4 @@
-package masstack.maslogistics.infrastructure.persistence.PostgreSQL;
+package masstack.maslogistics.infrastructure.persistence.postgres;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
