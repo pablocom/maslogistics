@@ -2,9 +2,11 @@ package unitTests.masstack.maslogistics.api;
 
 import masstack.maslogistics.api.CreatePacketRequest;
 import masstack.maslogistics.api.PacketController;
+import masstack.maslogistics.domain.packageAggregate.Packet;
 import masstack.maslogistics.domain.services.PacketManagementService;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -15,10 +17,11 @@ public class WhenHandlingCreatePacketRequest extends ControllerTestBase<PacketCo
     protected void additionalSetup() {
         super.additionalSetup();
         service = mock(PacketManagementService.class);
+        given(service.getPacket("")).willReturn(new Packet(""));
     }
 
     @Test
-    void serviceIsCalled() {
+    public void serviceIsCalled() {
         var expectedDescription = "SIM plus router description";
         var request = new CreatePacketRequest();
         request.setDescription(expectedDescription);

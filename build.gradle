@@ -18,11 +18,10 @@ dependencies {
 	implementation 'org.springframework:spring-orm:5.1.6.RELEASE'
 	implementation 'org.apache.tomcat:tomcat-dbcp:9.0.1'
 	implementation 'org.postgresql:postgresql:42.2.10'
-	implementation 'junit:junit:4.12'
+	implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
 
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.4.2'
+	testImplementation 'org.mockito:mockito-core:2.23.4'
 }
 
 test {

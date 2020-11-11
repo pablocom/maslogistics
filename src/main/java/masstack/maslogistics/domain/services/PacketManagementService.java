@@ -1,5 +1,6 @@
 package masstack.maslogistics.domain.services;
 
+import masstack.maslogistics.domain.DomainException;
 import masstack.maslogistics.domain.packageAggregate.Packet;
 import masstack.maslogistics.domain.packageAggregate.PacketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,9 @@ public class PacketManagementService {
         packetRepository.save(packet);
     }
 
-    public Optional<Packet> getPacket(String id) {
+    public Packet getPacket(String id) {
         var packet = packetRepository.findById(UUID.fromString(id));
-        return packet;
+
+        return packet.get();
     }
 }

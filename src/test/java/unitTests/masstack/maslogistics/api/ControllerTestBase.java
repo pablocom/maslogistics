@@ -1,15 +1,14 @@
 package unitTests.masstack.maslogistics.api;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
 
-@RunWith(MockitoJUnitRunner.class)
+import masstack.maslogistics.domain.DomainException;
+import org.junit.jupiter.api.BeforeEach;
+
 public abstract class ControllerTestBase<TController> {
     protected TController controller;
 
     @BeforeEach
-    void setup(){
+    public void setup(){
         additionalSetup();
         controller = setupController();
     }
