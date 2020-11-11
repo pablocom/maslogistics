@@ -3,7 +3,7 @@ package unitTests.masstack.maslogistics.api;
 import masstack.maslogistics.api.PacketController;
 import masstack.maslogistics.domain.services.PacketManagementService;
 import org.junit.jupiter.api.Test;
-import unitTests.masstack.maslogistics.api.builders.PacketBuilder;
+import unitTests.masstack.maslogistics.common.builders.PacketBuilder;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
@@ -23,7 +23,7 @@ public class WhenHandlingGetPacketRequest extends ControllerTestBase<PacketContr
     }
 
     @Test
-    public void serviceIsCalled() throws Exception {
+    void serviceIsCalled() throws Exception {
         var expectedId = "2ebf6d4b-2c96-4e56-9a43-ab6c7667e46b";
         controller.getPacket(expectedId);
 

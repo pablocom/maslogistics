@@ -18,8 +18,8 @@ public class PacketManagementService {
         this.packetRepository = packetRepository;
     }
 
-    public void createPacket(String description) {
-        var packet = new Packet(description);
+    public void createPacket(String description, String deliveryStatus) {
+        var packet = new Packet(UUID.randomUUID(), description, deliveryStatus);
         packetRepository.save(packet);
     }
 

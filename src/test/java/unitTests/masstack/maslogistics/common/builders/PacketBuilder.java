@@ -1,4 +1,4 @@
-package unitTests.masstack.maslogistics.api.builders;
+package unitTests.masstack.maslogistics.common.builders;
 
 import masstack.maslogistics.domain.packageAggregate.Packet;
 
@@ -8,6 +8,10 @@ public class PacketBuilder {
     private UUID id;
     private String description;
     private String deliveryStatus;
+
+    public Packet build() {
+        return new Packet(id, description, deliveryStatus);
+    }
 
     public PacketBuilder withId(UUID id) {
         this.id = id;
@@ -28,9 +32,5 @@ public class PacketBuilder {
         return new PacketBuilder()
                 .withId(UUID.randomUUID())
                 .withDescription("SomeDescription");
-    }
-
-    public Packet build() {
-        return new Packet(id, description, deliveryStatus);
     }
 }

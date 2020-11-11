@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("packet")
 public class PacketController {
@@ -18,15 +20,14 @@ public class PacketController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<PacketResponse> getPacket(@PathVariable String id)
-            throws DomainException {
+    public ResponseEntity<PacketResponse> getPacket(@PathVariable String id) {
         var packetResponse = PacketResponse.fromAggregate(this.packetManagementService.getPacket(id));
         return ResponseEntity.ok(packetResponse);
     }
 
     @PostMapping
     public ResponseEntity<String> createPacket(@RequestBody CreatePacketRequest request) {
-        this.packetManagementService.createPacket(request.getDescription());
+        this.packetManagementService.createPacket(request.getDescription(), request.getDeliveryStatus());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
