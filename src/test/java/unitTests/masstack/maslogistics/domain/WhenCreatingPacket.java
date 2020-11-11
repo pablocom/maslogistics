@@ -1,9 +1,6 @@
 package unitTests.masstack.maslogistics.domain;
 
-import masstack.maslogistics.domain.packageAggregate.Packet;
-import masstack.maslogistics.domain.packageAggregate.PacketRepository;
 import masstack.maslogistics.domain.services.PacketManagementService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import unitTests.masstack.maslogistics.common.builders.PacketBuilder;
 
@@ -13,14 +10,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.equalTo;
 
-
-public class WhenCreatingPacket {
+public class WhenCreatingPacket extends PacketDomainTestBase {
     private PacketManagementService service;
-    private PacketRepository repository;
 
-    @BeforeEach
-    void setUp() {
-        repository = new FakeInMemoryPacketRepository();
+    @Override
+    protected void additionalSetup() {
+        super.additionalSetup();
         service = new PacketManagementService(repository);
     }
 
@@ -44,9 +39,5 @@ public class WhenCreatingPacket {
         assertThat(packet.getId(), is(equalTo(id)));
         assertThat(packet.getDescription(), is(equalTo(description)));
         assertThat(packet.getDeliveryStatus(), is(equalTo(deliveryStatus)));
-    }
-
-    private void assumePacketInRepository(Packet packet) {
-        repository.save(packet);
     }
 }

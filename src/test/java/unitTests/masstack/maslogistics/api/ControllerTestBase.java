@@ -1,7 +1,5 @@
 package unitTests.masstack.maslogistics.api;
 
-
-import masstack.maslogistics.domain.DomainException;
 import org.junit.jupiter.api.BeforeEach;
 
 public abstract class ControllerTestBase<TController> {
