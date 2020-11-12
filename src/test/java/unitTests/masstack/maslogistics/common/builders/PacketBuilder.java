@@ -18,6 +18,11 @@ public class PacketBuilder {
         return this;
     }
 
+    public PacketBuilder withId(String id) {
+        this.id = UUID.fromString(id);
+        return this;
+    }
+
     public PacketBuilder withDescription(String description) {
         this.description = description;
         return this;

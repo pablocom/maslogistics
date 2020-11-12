@@ -27,5 +27,10 @@ public class PacketController {
         this.packetManagementService.createPacket(request.getDescription(), request.getDeliveryStatus());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @GetMapping
+    public void getAllPackets() {
+        this.packetManagementService.getAllPackets();
+    }
 }
 

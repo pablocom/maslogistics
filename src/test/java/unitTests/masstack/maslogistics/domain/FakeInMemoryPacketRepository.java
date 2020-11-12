@@ -18,7 +18,11 @@ public class FakeInMemoryPacketRepository implements PacketRepository {
 
     @Override
     public Optional<Packet> findById(UUID id) {
-        var packetOptional = packetList.stream().filter(x -> x.getId().equals(id)).findFirst();
-        return packetOptional;
+        return packetList.stream().filter(x -> x.getId().equals(id)).findFirst();
+    }
+
+    @Override
+    public List<Packet> all() {
+        return packetList;
     }
 }

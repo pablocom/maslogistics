@@ -6,6 +6,7 @@ import masstack.maslogistics.domain.packageAggregate.PacketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -29,5 +30,9 @@ public class PacketManagementService {
             throw new DomainException("Packet with id " + id + " not found");
 
         return packet.get();
+    }
+
+    public List<Packet> getAllPackets() {
+        return packetRepository.all();
     }
 }

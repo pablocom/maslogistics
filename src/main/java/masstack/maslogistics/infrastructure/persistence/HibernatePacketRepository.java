@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -34,5 +35,10 @@ public class HibernatePacketRepository implements PacketRepository {
         var packetEntity = Optional
                 .ofNullable(sessionFactory.getCurrentSession().byId(PacketEntity.class).load(id));
         return packetEntity.map(PacketEntity::toDomain);
+    }
+
+    @Override
+    public List<Packet> all() {
+        return null;
     }
 }
