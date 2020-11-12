@@ -2,6 +2,7 @@ package masstack.maslogistics.infrastructure.persistence.postgres;
 
 import masstack.maslogistics.infrastructure.persistence.entities.PacketEntity;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+import org.hibernate.dialect.PostgreSQL9Dialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -47,7 +48,7 @@ public class HibernatePostgreSQLConfiguration {
     private Properties hibernateProperties() {
         var hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
-        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        hibernateProperties.setProperty("hibernate.dialect", PostgreSQL9Dialect.class.getCanonicalName());
 
         return hibernateProperties;
     }
