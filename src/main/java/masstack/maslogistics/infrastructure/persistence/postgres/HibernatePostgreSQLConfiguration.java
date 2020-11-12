@@ -1,5 +1,6 @@
 package masstack.maslogistics.infrastructure.persistence.postgres;
 
+import masstack.maslogistics.domain.packageAggregate.Packet;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,7 @@ public class HibernatePostgreSQLConfiguration {
     public LocalSessionFactoryBean sessionFactory() {
         var sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("masstack.maslogistics.infrastructure.persistence.entities");
+        sessionFactory.setPackagesToScan(Packet.class.getPackage().getName());
         sessionFactory.setHibernateProperties(hibernateProperties());
 
         return sessionFactory;
@@ -38,8 +39,7 @@ public class HibernatePostgreSQLConfiguration {
 
     @Bean
     public PlatformTransactionManager hibernateTransactionManager() {
-        var transactionManager
-                = new HibernateTransactionManager();
+        var transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;
     }
