@@ -9,9 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -39,6 +45,12 @@ public class HibernatePacketRepository implements PacketRepository {
 
     @Override
     public List<Packet> all() {
-        return null;
+        CriteriaBuilder cb = sessionFactory.getCurrentSession().getCriteriaBuilder();
+        CriteriaQuery<PacketEntity> cq = cb.createQuery(PacketEntity.class);
+        Root<PacketEntity> rootEntry = cq.from(PacketEntity.class);
+        CriteriaQuery<PacketEntity> all = cq.select(rootEntry);
+
+        TypedQuery<PacketEntity> allQuery = sessionFactory.getCurrentSession().createQuery(all);
+        return allQuery.getResultList().stream().map(PacketEntity::toDomain).collect(Collectors.toList());
     }
 }

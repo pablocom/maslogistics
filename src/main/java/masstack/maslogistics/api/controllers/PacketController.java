@@ -1,10 +1,13 @@
 package masstack.maslogistics.api.controllers;
 
+import masstack.maslogistics.domain.packageAggregate.Packet;
 import masstack.maslogistics.domain.services.PacketManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("packet")
@@ -29,8 +32,8 @@ public class PacketController {
     }
 
     @GetMapping
-    public void getAllPackets() {
-        this.packetManagementService.getAllPackets();
+    public ResponseEntity<List<Packet>> getAllPackets() {
+        return ResponseEntity.ok(this.packetManagementService.getAllPackets());
     }
 }
 
