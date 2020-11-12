@@ -14,7 +14,7 @@ public class WhenHandlingGetPacketRequest extends ControllerTestBase<PacketContr
     private PacketManagementService service;
 
     @Override
-    protected void additionalSetup() {
+    protected void additionalSetup() throws Exception {
         super.additionalSetup();
         service = mock(PacketManagementService.class);
 
@@ -23,7 +23,7 @@ public class WhenHandlingGetPacketRequest extends ControllerTestBase<PacketContr
     }
 
     @Test
-    void serviceIsCalled() {
+    void serviceIsCalled() throws Exception {
         var expectedId = "2ebf6d4b-2c96-4e56-9a43-ab6c7667e46b";
         controller.getPacket(expectedId);
 

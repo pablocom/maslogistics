@@ -22,8 +22,11 @@ public class PacketManagementService {
         packetRepository.save(packet);
     }
 
-    public Packet getPacket(String id) {
+    public Packet getPacket(String id) throws DomainException {
         var packet = packetRepository.findById(UUID.fromString(id));
+
+        if (packet.isEmpty())
+            throw new DomainException("Packet with id " + id + " not found");
 
         return packet.get();
     }

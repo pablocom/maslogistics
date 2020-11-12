@@ -14,7 +14,7 @@ public class WhenHandlingCreatePacketRequest extends ControllerTestBase<PacketCo
     private PacketManagementService service;
 
     @Override
-    protected void additionalSetup() {
+    protected void additionalSetup() throws Exception {
         super.additionalSetup();
         service = mock(PacketManagementService.class);
         given(service.getPacket("")).willReturn(new Packet(""));

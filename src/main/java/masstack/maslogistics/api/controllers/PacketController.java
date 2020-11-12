@@ -17,7 +17,7 @@ public class PacketController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<PacketDto> getPacket(@PathVariable String id) {
+    public ResponseEntity<PacketDto> getPacket(@PathVariable String id) throws Exception {
         var packetResponse = PacketDto.fromAggregate(this.packetManagementService.getPacket(id));
         return ResponseEntity.ok(packetResponse);
     }
