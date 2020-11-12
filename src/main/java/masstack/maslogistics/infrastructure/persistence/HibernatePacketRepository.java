@@ -7,40 +7,32 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class HibernatePacketRepository implements PacketRepository {
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     @Autowired
-    public HibernatePacketRepository(SessionFactory sessionFactory) {
+    public HibernatePacketRepository(final SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
     public void save(Packet packet) {
-        var session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-
-        var packetEntity = new PacketEntity(packet);
-        session.saveOrUpdate(packetEntity);
-
-        tx.commit();
-        session.close();
+        sessionFactory.getCurrentSession().saveOrUpdate(new PacketEntity(packet));
+        sessionFactory.getCurrentSession().flush();
+        sessionFactory.getCurrentSession().clear();
     }
 
     @Override
     public Optional<Packet> findById(UUID id) {
-        var session = sessionFactory.openSession();
-        var packetEntity = Optional.ofNullable(session.byId(PacketEntity.class).load(id));
-        session.close();
-
-        if (packetEntity.isPresent())
-            return Optional.of(packetEntity.get().toDomain());
-
-        return Optional.empty();
+        var packetEntity = Optional
+                .ofNullable(sessionFactory.getCurrentSession().byId(PacketEntity.class).load(id));
+        return packetEntity.map(PacketEntity::toDomain);
     }
 }
