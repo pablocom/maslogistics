@@ -1,7 +1,7 @@
 package unitTests.masstack.maslogistics.api;
 
-import masstack.maslogistics.api.CreatePacketRequest;
-import masstack.maslogistics.api.PacketController;
+import masstack.maslogistics.api.controllers.CreatePacketRequest;
+import masstack.maslogistics.api.controllers.PacketController;
 import masstack.maslogistics.domain.packageAggregate.Packet;
 import masstack.maslogistics.domain.services.PacketManagementService;
 import org.junit.jupiter.api.Test;

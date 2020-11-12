@@ -1,20 +1,20 @@
-package masstack.maslogistics.api;
+package masstack.maslogistics.api.controllers;
 
 import masstack.maslogistics.domain.packageAggregate.Packet;
 
-public class PacketResponse {
-    private String id;
-    private String description;
-    private String deliveryStatus;
+public class PacketDto {
+    private final String id;
+    private final String description;
+    private final String deliveryStatus;
 
-    private PacketResponse(String id, String description, String deliveryStatus) {
+    private PacketDto(String id, String description, String deliveryStatus) {
         this.id = id;
         this.description = description;
         this.deliveryStatus = deliveryStatus;
     }
 
-    public static PacketResponse fromAggregate(Packet packet) {
-        return new PacketResponse(packet.getId().toString(),
+    public static PacketDto fromAggregate(Packet packet) {
+        return new PacketDto(packet.getId().toString(),
                 packet.getDescription(),
                 packet.getDeliveryStatus());
     }

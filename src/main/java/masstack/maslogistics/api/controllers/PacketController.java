@@ -1,13 +1,10 @@
-package masstack.maslogistics.api;
+package masstack.maslogistics.api.controllers;
 
-import masstack.maslogistics.domain.DomainException;
 import masstack.maslogistics.domain.services.PacketManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping("packet")
@@ -20,8 +17,8 @@ public class PacketController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<PacketResponse> getPacket(@PathVariable String id) {
-        var packetResponse = PacketResponse.fromAggregate(this.packetManagementService.getPacket(id));
+    public ResponseEntity<PacketDto> getPacket(@PathVariable String id) {
+        var packetResponse = PacketDto.fromAggregate(this.packetManagementService.getPacket(id));
         return ResponseEntity.ok(packetResponse);
     }
 

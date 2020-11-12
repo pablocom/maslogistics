@@ -1,4 +1,4 @@
-package masstack.maslogistics.api;
+package masstack.maslogistics.api.controllers;
 
 public final class CreatePacketRequest {
     private String description;
@@ -8,7 +8,7 @@ public final class CreatePacketRequest {
         this.description = description;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 
