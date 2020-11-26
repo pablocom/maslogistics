@@ -30,7 +30,7 @@ public class HibernatePacketRepository implements PacketRepository {
     }
 
     @Override
-    public void save(Packet packet) {
+    public void saveOrUpdate(Packet packet) {
         sessionFactory.getCurrentSession().saveOrUpdate(new PacketEntity(packet));
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();

@@ -1,5 +1,6 @@
 package masstack.maslogistics.api.controllers;
 
+import masstack.maslogistics.domain.DomainException;
 import masstack.maslogistics.domain.packageAggregate.Packet;
 import masstack.maslogistics.domain.services.PacketManagementService;
 import masstack.maslogistics.domain.services.PacketManagementServiceImplementation;
@@ -21,7 +22,7 @@ public class PacketController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<PacketDto> getPacket(@PathVariable String id) throws Exception {
+    public ResponseEntity<PacketDto> getPacket(@PathVariable String id) throws DomainException {
         var packetResponse = PacketDto.fromAggregate(this.packetManagementService.getPacket(id));
         return ResponseEntity.ok(packetResponse);
     }
@@ -38,7 +39,7 @@ public class PacketController {
     }
 
     @PostMapping(value = "{id}")
-    public ResponseEntity<HttpStatus> markAsCompleted(String id) {
+    public ResponseEntity<HttpStatus> markAsCompleted(String id) throws DomainException {
         this.packetManagementService.markAsCompleted(id);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -12,7 +12,14 @@ public class FakeInMemoryPacketRepository implements PacketRepository {
     private List<Packet> packetList = new ArrayList<>();
 
     @Override
-    public void save(Packet packet) {
+    public void saveOrUpdate(Packet packet) {
+        var packetId = packet.getId();
+
+        if (packetList.stream().anyMatch(x -> x.getId().equals(packetId))) {
+            var packetToRemove = packetList.stream().filter(x -> x.getId().equals(packetId)).findAny().get();
+            packetList.remove(packetToRemove);
+        }
+
         packetList.add(packet);
     }
 

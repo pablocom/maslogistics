@@ -16,6 +16,6 @@ public class PacketDomainTestBase {
     protected void additionalSetup() {}
 
     protected void assumePacketInRepository(Packet packet) {
-        repository.save(packet);
+        repository.saveOrUpdate(packet);
     }
 }

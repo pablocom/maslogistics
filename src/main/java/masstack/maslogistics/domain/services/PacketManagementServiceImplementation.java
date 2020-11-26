@@ -20,7 +20,7 @@ public class PacketManagementServiceImplementation implements PacketManagementSe
 
     public void createPacket(String description, String deliveryStatus) {
         var packet = new Packet(UUID.randomUUID(), description, deliveryStatus);
-        packetRepository.save(packet);
+        packetRepository.saveOrUpdate(packet);
     }
 
     public Packet getPacket(String id) throws DomainException {
@@ -36,8 +36,15 @@ public class PacketManagementServiceImplementation implements PacketManagementSe
         return packetRepository.all();
     }
 
-    @Override
-    public void markAsCompleted(String id) {
 
+    public void markAsCompleted(String id) throws DomainException {
+        var packetOptional = this.packetRepository.findById(UUID.fromString(id));
+
+        if (packetOptional.isEmpty())
+            throw new DomainException("Packet with id " + id + " not found");
+
+        var packet = packetOptional.get();
+        packet.markAsCompleted();
+        packetRepository.saveOrUpdate(packet);
     }
 }

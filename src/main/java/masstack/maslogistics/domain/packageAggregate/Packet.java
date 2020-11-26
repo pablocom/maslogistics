@@ -19,7 +19,7 @@ public class Packet {
     }
 
     public void markAsCompleted() {
-        deliveryStatus = "COMPLETED";
+        deliveryStatus = "DELIVERED";
     }
 
     public UUID getId() {

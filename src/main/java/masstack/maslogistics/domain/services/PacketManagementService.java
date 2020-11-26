@@ -9,5 +9,5 @@ public interface PacketManagementService {
     void createPacket(String description, String deliveryStatus);
     Packet getPacket(String id) throws DomainException;
     List<Packet> getAllPackets();
-    void markAsCompleted(String id);
+    void markAsCompleted(String id) throws DomainException;
 }

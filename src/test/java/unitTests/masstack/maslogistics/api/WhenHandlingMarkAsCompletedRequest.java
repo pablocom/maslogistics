@@ -1,6 +1,7 @@
 package unitTests.masstack.maslogistics.api;
 
 import masstack.maslogistics.api.controllers.PacketController;
+import masstack.maslogistics.domain.DomainException;
 import masstack.maslogistics.domain.services.PacketManagementService;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class WhenHandlingMarkAsCompletedRequest extends ControllerTestBase<Packe
     }
 
     @Test
-    void serviceIsCalled() {
+    void serviceIsCalled() throws DomainException {
         var packetId = "2ebf6d4b-2c96-4e56-9a43-ab6c7667e46b";
 
         var httpStatus = controller.markAsCompleted(packetId);
