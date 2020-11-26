@@ -8,8 +8,8 @@ import unitTests.masstack.maslogistics.common.builders.PacketBuilder;
 import java.util.UUID;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
 public class WhenCreatingPacket extends PacketDomainTestBase {
     private PacketManagementServiceImplementation service;

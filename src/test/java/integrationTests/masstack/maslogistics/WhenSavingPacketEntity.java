@@ -3,8 +3,6 @@ package integrationTests.masstack.maslogistics;
 import masstack.maslogistics.api.MaslogisticsApiApplication;
 import masstack.maslogistics.domain.packageAggregate.PacketDeliveryStatus;
 import masstack.maslogistics.domain.packageAggregate.PacketRepository;
-import masstack.maslogistics.infrastructure.persistence.HibernatePacketRepository;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,9 +11,9 @@ import unitTests.masstack.maslogistics.common.builders.PacketBuilder;
 
 import java.util.UUID;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 @ContextConfiguration(classes = MaslogisticsApiApplication.class)
 @SpringBootTest
