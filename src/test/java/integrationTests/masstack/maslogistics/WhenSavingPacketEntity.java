@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import unitTests.masstack.maslogistics.common.builders.PacketBuilder;
+import unitTests.masstack.maslogistics.shared.builders.PacketBuilder;
 
 import java.util.UUID;
 

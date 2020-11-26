@@ -6,7 +6,7 @@ import masstack.maslogistics.domain.services.PacketManagementServiceImplementati
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
-import unitTests.masstack.maslogistics.common.builders.PacketBuilder;
+import unitTests.masstack.maslogistics.shared.builders.PacketBuilder;
 
 import java.util.UUID;
 

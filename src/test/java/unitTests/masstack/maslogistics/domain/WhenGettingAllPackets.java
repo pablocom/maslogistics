@@ -4,7 +4,7 @@ import masstack.maslogistics.domain.packageAggregate.Packet;
 import masstack.maslogistics.domain.packageAggregate.PacketDeliveryStatus;
 import masstack.maslogistics.domain.services.PacketManagementServiceImplementation;
 import org.junit.jupiter.api.Test;
-import unitTests.masstack.maslogistics.common.builders.PacketBuilder;
+import unitTests.masstack.maslogistics.shared.builders.PacketBuilder;
 
 import java.util.List;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package unitTests.masstack.maslogistics.common.builders;
+package unitTests.masstack.maslogistics.shared.builders;
 
 import masstack.maslogistics.domain.packageAggregate.Packet;
 import masstack.maslogistics.domain.packageAggregate.PacketDeliveryStatus;

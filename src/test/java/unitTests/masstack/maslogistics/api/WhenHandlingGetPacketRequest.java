@@ -3,7 +3,7 @@ package unitTests.masstack.maslogistics.api;
 import masstack.maslogistics.api.controllers.PacketController;
 import masstack.maslogistics.domain.services.PacketManagementService;
 import org.junit.jupiter.api.Test;
-import unitTests.masstack.maslogistics.common.builders.PacketBuilder;
+import unitTests.masstack.maslogistics.shared.builders.PacketBuilder;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
