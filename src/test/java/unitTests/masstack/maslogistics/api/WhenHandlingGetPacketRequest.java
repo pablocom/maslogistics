@@ -2,6 +2,7 @@ package unitTests.masstack.maslogistics.api;
 
 import masstack.maslogistics.api.controllers.PacketController;
 import masstack.maslogistics.domain.services.PacketManagementService;
+import masstack.maslogistics.domain.services.PacketManagementServiceImplementation;
 import org.junit.jupiter.api.Test;
 import unitTests.masstack.maslogistics.common.builders.PacketBuilder;
 

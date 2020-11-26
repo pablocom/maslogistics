@@ -1,6 +1,6 @@
 package unitTests.masstack.maslogistics.domain;
 
-import masstack.maslogistics.domain.services.PacketManagementService;
+import masstack.maslogistics.domain.services.PacketManagementServiceImplementation;
 import org.junit.jupiter.api.Test;
 import unitTests.masstack.maslogistics.common.builders.PacketBuilder;
 
@@ -11,12 +11,12 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.equalTo;
 
 public class WhenCreatingPacket extends PacketDomainTestBase {
-    private PacketManagementService service;
+    private PacketManagementServiceImplementation service;
 
     @Override
     protected void additionalSetup() {
         super.additionalSetup();
-        service = new PacketManagementService(repository);
+        service = new PacketManagementServiceImplementation(repository);
     }
 
     @Test

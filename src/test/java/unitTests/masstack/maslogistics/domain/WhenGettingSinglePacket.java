@@ -1,7 +1,7 @@
 package unitTests.masstack.maslogistics.domain;
 
 import masstack.maslogistics.domain.DomainException;
-import masstack.maslogistics.domain.services.PacketManagementService;
+import masstack.maslogistics.domain.services.PacketManagementServiceImplementation;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
@@ -15,12 +15,12 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class WhenGettingSinglePacket extends PacketDomainTestBase {
-    private PacketManagementService service;
+    private PacketManagementServiceImplementation service;
 
     @Override
     protected void additionalSetup() {
         super.additionalSetup();
-        service = new PacketManagementService(repository);
+        service = new PacketManagementServiceImplementation(repository);
     }
 
     @Test

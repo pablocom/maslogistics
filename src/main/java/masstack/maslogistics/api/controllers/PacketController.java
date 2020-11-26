@@ -2,6 +2,7 @@ package masstack.maslogistics.api.controllers;
 
 import masstack.maslogistics.domain.packageAggregate.Packet;
 import masstack.maslogistics.domain.services.PacketManagementService;
+import masstack.maslogistics.domain.services.PacketManagementServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class PacketController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createPacket(@RequestBody CreatePacketRequest request) {
+    public ResponseEntity<HttpStatus> createPacket(@RequestBody CreatePacketRequest request) {
         this.packetManagementService.createPacket(request.getDescription(), request.getDeliveryStatus());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -34,6 +35,12 @@ public class PacketController {
     @GetMapping
     public ResponseEntity<List<Packet>> getAllPackets() {
         return ResponseEntity.ok(this.packetManagementService.getAllPackets());
+    }
+
+    @PostMapping(value = "{id}")
+    public ResponseEntity<HttpStatus> markAsCompleted(String id) {
+        this.packetManagementService.markAsCompleted(id);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
 
