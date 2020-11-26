@@ -47,7 +47,7 @@ public class HibernatePostgreSQLConfiguration {
 
     private Properties hibernateProperties() {
         var hibernateProperties = new Properties();
-        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
         hibernateProperties.setProperty("hibernate.dialect", PostgreSQL9Dialect.class.getCanonicalName());
 
         return hibernateProperties;
