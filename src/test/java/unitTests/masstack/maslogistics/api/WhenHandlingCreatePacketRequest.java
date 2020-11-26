@@ -21,14 +21,12 @@ public class WhenHandlingCreatePacketRequest extends ControllerTestBase<PacketCo
     @Test
     public void serviceIsCalled() {
         var expectedDescription = "SIM plus router description";
-        var expectedDeliveryStatus = "DELIVERED";
         var request = new CreatePacketRequest();
         request.setDescription(expectedDescription);
-        request.setDeliveryStatus(expectedDeliveryStatus);
 
         controller.createPacket(request);
 
-        verify(service).createPacket(expectedDescription, expectedDeliveryStatus);
+        verify(service).createPacket(expectedDescription);
     }
 
     @Override

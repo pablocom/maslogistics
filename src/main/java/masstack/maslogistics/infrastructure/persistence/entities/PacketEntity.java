@@ -1,6 +1,7 @@
 package masstack.maslogistics.infrastructure.persistence.entities;
 
 import masstack.maslogistics.domain.packageAggregate.Packet;
+import masstack.maslogistics.domain.packageAggregate.PacketDeliveryStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,22 +13,22 @@ public class PacketEntity implements Serializable {
     @Id
     private UUID Id;
     private String description;
-    private String deliveryStatus = "defaultValue";
+    private PacketDeliveryStatus deliveryStatus;
 
     public PacketEntity(Packet packet) {
-        this.Id = UUID.randomUUID();
+        this.Id = packet.getId();
         this.description = packet.getDescription();
         this.deliveryStatus = packet.getDeliveryStatus();
     }
 
     // Hibernate required default constructor
-    public PacketEntity() {}
+    protected PacketEntity() {}
 
-    public String getDeliveryStatus() {
+    public PacketDeliveryStatus getDeliveryStatus() {
         return deliveryStatus;
     }
 
-    public void setDeliveryStatus(String deliveryStatus) {
+    public void setDeliveryStatus(PacketDeliveryStatus deliveryStatus) {
         this.deliveryStatus = deliveryStatus;
     }
 

@@ -1,5 +1,6 @@
 package unitTests.masstack.maslogistics.domain;
 
+import masstack.maslogistics.domain.packageAggregate.PacketDeliveryStatus;
 import masstack.maslogistics.domain.services.PacketManagementServiceImplementation;
 import org.junit.jupiter.api.Test;
 import unitTests.masstack.maslogistics.common.builders.PacketBuilder;
@@ -23,7 +24,7 @@ public class WhenCreatingPacket extends PacketDomainTestBase {
     void packetIsAdded() {
         var id = UUID.fromString("57ef2f82-65db-424e-b297-72c1e2363806");
         var description = "SIM";
-        var deliveryStatus = "DELIVERED";
+        var deliveryStatus = PacketDeliveryStatus.DELIVERED;
         assumePacketInRepository(
                 new PacketBuilder()
                         .withId(id)
@@ -31,11 +32,9 @@ public class WhenCreatingPacket extends PacketDomainTestBase {
                         .withDeliveryStatus(deliveryStatus)
                         .build());
 
-        service.createPacket(description, deliveryStatus);
+        service.createPacket(description);
 
-        var packetOptional = repository.findById(id);
-        assertThat(packetOptional.isPresent(), is(equalTo(true)));
-        var packet = packetOptional.get();
+        var packet = repository.findById(id).get();
         assertThat(packet.getId(), is(equalTo(id)));
         assertThat(packet.getDescription(), is(equalTo(description)));
         assertThat(packet.getDeliveryStatus(), is(equalTo(deliveryStatus)));

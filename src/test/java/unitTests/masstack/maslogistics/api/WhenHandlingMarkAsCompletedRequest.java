@@ -29,7 +29,7 @@ public class WhenHandlingMarkAsCompletedRequest extends ControllerTestBase<Packe
         var httpStatus = controller.markAsCompleted(packetId);
 
         verify(service).markAsCompleted(packetId);
-        assertThat(httpStatus.getStatusCode(), is(equalTo(HttpStatus.CREATED)));
+        assertThat(httpStatus.getStatusCode(), is(equalTo(HttpStatus.OK)));
     }
 
     @Override

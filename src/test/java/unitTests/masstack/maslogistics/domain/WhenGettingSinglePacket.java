@@ -1,6 +1,7 @@
 package unitTests.masstack.maslogistics.domain;
 
 import masstack.maslogistics.domain.DomainException;
+import masstack.maslogistics.domain.packageAggregate.PacketDeliveryStatus;
 import masstack.maslogistics.domain.services.PacketManagementServiceImplementation;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ public class WhenGettingSinglePacket extends PacketDomainTestBase {
     public void packetIsRetrieved() throws Exception {
         var id = UUID.fromString("57ef2f82-65db-424e-b297-72c1e2363806");
         var description = "some description";
-        var deliveryStatus = "some delivery status";
+        var deliveryStatus = PacketDeliveryStatus.PENDING;
         assumePacketInRepository(new PacketBuilder()
                 .withId(id)
                 .withDescription(description)

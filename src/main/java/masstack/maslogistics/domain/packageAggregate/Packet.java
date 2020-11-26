@@ -2,24 +2,26 @@ package masstack.maslogistics.domain.packageAggregate;
 
 import java.util.UUID;
 
+
 public class Packet {
     private UUID Id;
     private String description;
-    private String deliveryStatus;
+    private PacketDeliveryStatus deliveryStatus;
 
-    public Packet(String description) {
+    public Packet(UUID id, String description) {
+        this.Id = id;
         this.description = description;
-        this.deliveryStatus = "PENDING";
+        this.deliveryStatus = PacketDeliveryStatus.PENDING;
     }
 
-    public Packet(UUID id, String description, String deliveryStatus) {
+    public Packet(UUID id, String description, PacketDeliveryStatus deliveryStatus) {
         this.Id = id;
         this.description = description;
         this.deliveryStatus = deliveryStatus;
     }
 
     public void markAsCompleted() {
-        deliveryStatus = "DELIVERED";
+        deliveryStatus = PacketDeliveryStatus.DELIVERED;
     }
 
     public UUID getId() {
@@ -30,7 +32,7 @@ public class Packet {
         return this.description;
     }
 
-    public String getDeliveryStatus() {
+    public PacketDeliveryStatus getDeliveryStatus() {
         return this.deliveryStatus;
     }
 }

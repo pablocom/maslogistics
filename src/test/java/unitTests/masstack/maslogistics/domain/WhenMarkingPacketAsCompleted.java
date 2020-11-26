@@ -1,6 +1,7 @@
 package unitTests.masstack.maslogistics.domain;
 
 import masstack.maslogistics.domain.DomainException;
+import masstack.maslogistics.domain.packageAggregate.PacketDeliveryStatus;
 import masstack.maslogistics.domain.services.PacketManagementService;
 import masstack.maslogistics.domain.services.PacketManagementServiceImplementation;
 import org.junit.jupiter.api.Test;
@@ -26,12 +27,12 @@ public class WhenMarkingPacketAsCompleted extends PacketDomainTestBase {
         var id = UUID.fromString("57ef2f82-65db-424e-b297-72c1e2363806");
         assumePacketInRepository(new PacketBuilder()
                 .withId(id)
-                .withDeliveryStatus("PENDING")
+                .withDeliveryStatus(PacketDeliveryStatus.PENDING)
                 .build());
 
         service.markAsCompleted(id.toString());
 
-        var deliveredStatus = "DELIVERED";
+        var deliveredStatus = PacketDeliveryStatus.DELIVERED;
         var packet = repository.all().stream().findFirst().get();
         assertThat(packet.getId(), is(equalTo(id)));
         assertThat(packet.getDeliveryStatus(), is(equalTo(deliveredStatus)));

@@ -18,8 +18,8 @@ public class PacketManagementServiceImplementation implements PacketManagementSe
         this.packetRepository = packetRepository;
     }
 
-    public void createPacket(String description, String deliveryStatus) {
-        var packet = new Packet(UUID.randomUUID(), description, deliveryStatus);
+    public void createPacket(String description) {
+        var packet = new Packet(UUID.randomUUID(), description);
         packetRepository.saveOrUpdate(packet);
     }
 

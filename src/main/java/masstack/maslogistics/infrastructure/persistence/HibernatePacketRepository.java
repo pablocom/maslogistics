@@ -45,12 +45,12 @@ public class HibernatePacketRepository implements PacketRepository {
 
     @Override
     public List<Packet> all() {
-        CriteriaBuilder cb = sessionFactory.getCurrentSession().getCriteriaBuilder();
-        CriteriaQuery<PacketEntity> cq = cb.createQuery(PacketEntity.class);
-        Root<PacketEntity> rootEntry = cq.from(PacketEntity.class);
-        CriteriaQuery<PacketEntity> all = cq.select(rootEntry);
+        var criteriaBuilder = sessionFactory.getCurrentSession().getCriteriaBuilder();
+        var packetEntityCriteriaQuery = criteriaBuilder.createQuery(PacketEntity.class);
+        var rootEntry = packetEntityCriteriaQuery.from(PacketEntity.class);
+        var allCriteriaQuery = packetEntityCriteriaQuery.select(rootEntry);
 
-        TypedQuery<PacketEntity> allQuery = sessionFactory.getCurrentSession().createQuery(all);
-        return allQuery.getResultList().stream().map(PacketEntity::toDomain).collect(Collectors.toList());
+        var allPacketsQuery = sessionFactory.getCurrentSession().createQuery(allCriteriaQuery);
+        return allPacketsQuery.getResultList().stream().map(PacketEntity::toDomain).collect(Collectors.toList());
     }
 }

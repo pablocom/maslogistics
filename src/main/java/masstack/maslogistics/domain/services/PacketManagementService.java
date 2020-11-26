@@ -6,7 +6,7 @@ import masstack.maslogistics.domain.packageAggregate.Packet;
 import java.util.List;
 
 public interface PacketManagementService {
-    void createPacket(String description, String deliveryStatus);
+    void createPacket(String description);
     Packet getPacket(String id) throws DomainException;
     List<Packet> getAllPackets();
     void markAsCompleted(String id) throws DomainException;

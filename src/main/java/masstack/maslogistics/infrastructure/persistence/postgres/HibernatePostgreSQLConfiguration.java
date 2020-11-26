@@ -30,7 +30,7 @@ public class HibernatePostgreSQLConfiguration {
     @Bean
     public DataSource dataSource() {
         var dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setDriverClassName(org.postgresql.Driver.class.getPackageName() + "." + org.postgresql.Driver.class.getSimpleName());
         dataSource.setUrl("jdbc:postgresql://localhost/maslogistics");
         dataSource.setUsername("postgres");
         dataSource.setPassword("postgres");
@@ -47,7 +47,7 @@ public class HibernatePostgreSQLConfiguration {
 
     private Properties hibernateProperties() {
         var hibernateProperties = new Properties();
-        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
         hibernateProperties.setProperty("hibernate.dialect", PostgreSQL9Dialect.class.getCanonicalName());
 
         return hibernateProperties;

@@ -29,7 +29,7 @@ public class PacketController {
 
     @PostMapping
     public ResponseEntity<HttpStatus> createPacket(@RequestBody CreatePacketRequest request) {
-        this.packetManagementService.createPacket(request.getDescription(), request.getDeliveryStatus());
+        this.packetManagementService.createPacket(request.getDescription());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -38,10 +38,10 @@ public class PacketController {
         return ResponseEntity.ok(this.packetManagementService.getAllPackets());
     }
 
-    @PostMapping(value = "{id}")
-    public ResponseEntity<HttpStatus> markAsCompleted(String id) throws DomainException {
+    @PostMapping("complete/{id}")
+    public ResponseEntity<HttpStatus> markAsCompleted(@PathVariable String id) throws DomainException {
         this.packetManagementService.markAsCompleted(id);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
 

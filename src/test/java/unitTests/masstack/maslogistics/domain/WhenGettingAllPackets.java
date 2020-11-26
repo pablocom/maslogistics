@@ -1,6 +1,7 @@
 package unitTests.masstack.maslogistics.domain;
 
 import masstack.maslogistics.domain.packageAggregate.Packet;
+import masstack.maslogistics.domain.packageAggregate.PacketDeliveryStatus;
 import masstack.maslogistics.domain.services.PacketManagementServiceImplementation;
 import org.junit.jupiter.api.Test;
 import unitTests.masstack.maslogistics.common.builders.PacketBuilder;
@@ -32,7 +33,7 @@ public class WhenGettingAllPackets extends PacketDomainTestBase {
     void returnsListWithOnePacket() {
         var id = UUID.fromString("57ef2f82-65db-424e-b297-72c1e2363806");
         var description = "SIM";
-        var deliveryStatus = "PENDING";
+        var deliveryStatus = PacketDeliveryStatus.PENDING;
         assumePacketInRepository(new PacketBuilder()
                 .withId(id)
                 .withDescription(description)
@@ -52,10 +53,10 @@ public class WhenGettingAllPackets extends PacketDomainTestBase {
     void returnsMultiplePackets() {
         var id = "57ef2f82-65db-424e-b297-72c1e2363806";
         var description = "SIM";
-        var deliveryStatus = "PENDING";
+        var deliveryStatus = PacketDeliveryStatus.DELIVERED;
         var anotherId = "57ef2f82-65db-424e-b297-72c1e2361234";
         var anotherDescription = "Phone + SIM";
-        var anotherDeliveryStatus = "DELIVERED";
+        var anotherDeliveryStatus = PacketDeliveryStatus.DELIVERED;
         assumePacketInRepository(new PacketBuilder()
                 .withId(id)
                 .withDescription(description)

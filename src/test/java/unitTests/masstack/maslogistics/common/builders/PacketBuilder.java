@@ -1,13 +1,14 @@
 package unitTests.masstack.maslogistics.common.builders;
 
 import masstack.maslogistics.domain.packageAggregate.Packet;
+import masstack.maslogistics.domain.packageAggregate.PacketDeliveryStatus;
 
 import java.util.UUID;
 
 public class PacketBuilder {
     private UUID id;
     private String description;
-    private String deliveryStatus;
+    private PacketDeliveryStatus deliveryStatus;
 
     public Packet build() {
         return new Packet(id, description, deliveryStatus);
@@ -28,7 +29,7 @@ public class PacketBuilder {
         return this;
     }
 
-    public PacketBuilder withDeliveryStatus(String deliveryStatus) {
+    public PacketBuilder withDeliveryStatus(PacketDeliveryStatus deliveryStatus) {
         this.deliveryStatus = deliveryStatus;
         return this;
     }
@@ -36,6 +37,7 @@ public class PacketBuilder {
     public static PacketBuilder validPacket() {
         return new PacketBuilder()
                 .withId(UUID.randomUUID())
-                .withDescription("SomeDescription");
+                .withDescription("SomeDescription")
+                .withDeliveryStatus(PacketDeliveryStatus.PENDING);
     }
 }

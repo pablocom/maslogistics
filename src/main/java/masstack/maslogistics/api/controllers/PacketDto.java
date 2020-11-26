@@ -16,7 +16,7 @@ public class PacketDto {
     public static PacketDto fromAggregate(Packet packet) {
         return new PacketDto(packet.getId().toString(),
                 packet.getDescription(),
-                packet.getDeliveryStatus());
+                packet.getDeliveryStatus().toString());
     }
 
     public String getDescription() {
