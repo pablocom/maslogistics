@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import unitTests.masstack.maslogistics.shared.builders.PacketBuilder;
 
+import javax.transaction.Transactional;
 import java.util.UUID;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -17,6 +18,7 @@ import static org.hamcrest.Matchers.is;
 
 @ContextConfiguration(classes = MaslogisticsApiApplication.class)
 @SpringBootTest
+@Transactional
 public class WhenSavingPacketEntity {
     @Autowired
     private PacketRepository repository;
