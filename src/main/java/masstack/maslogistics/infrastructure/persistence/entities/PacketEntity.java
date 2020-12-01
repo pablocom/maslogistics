@@ -3,6 +3,7 @@ package masstack.maslogistics.infrastructure.persistence.entities;
 import masstack.maslogistics.domain.packetAggregate.Packet;
 import masstack.maslogistics.domain.packetAggregate.PacketDeliveryStatus;
 import masstack.maslogistics.domain.packetAggregate.Product;
+import masstack.maslogistics.domain.packetAggregate.Sim;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,7 +18,7 @@ public class PacketEntity implements Serializable {
     private UUID id;
     private String description;
     private PacketDeliveryStatus deliveryStatus;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "packet")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ProductEntity> products = new ArrayList<>();
 
     public PacketEntity(Packet packet) {
@@ -47,6 +48,12 @@ public class PacketEntity implements Serializable {
     }
 
     public Packet toDomain() {
-        return new Packet(this.id, this.description, this.deliveryStatus);
+
+        var products = new ArrayList<Product>();
+        for (var product : this.products) {
+            if (product instanceof SimEntity)
+                products.add(new Sim(product.id, product.title, product.weight, product.size, ((SimEntity)product).getImsi()));
+        }
+        return new Packet(this.id, this.description, this.deliveryStatus, products);
     }
 }

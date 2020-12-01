@@ -30,18 +30,29 @@ public class WhenSavingPacketEntity {
         var description = "Some description";
         var deliveryStatus = PacketDeliveryStatus.PENDING;
 
+        var productTitle = "Title";
+        var productWeight = "Weight";
+        var productSize = "Size";
+        var productImsi = "IMSI";
+
         this.repository.saveOrUpdate(new PacketBuilder()
                 .withId(id)
                 .withDeliveryStatus(deliveryStatus)
                 .withDescription(description)
-                .withProducts(new Sim(productId, "Title", "Weight", "Size", "IMSI"))
+                .withProducts(new Sim(productId, productTitle, productWeight, productSize, productImsi))
                 .build());
 
         var packet = repository.findById(id).get();
         assertThat(packet.getId(), is(equalTo(id)));
         assertThat(packet.getDescription(), is(equalTo(description)));
         assertThat(packet.getDeliveryStatus(), is(equalTo(deliveryStatus)));
+
         assertThat(packet.getProducts().size(), is(equalTo(1)));
         assertThat(packet.getProducts().stream().findFirst().get().getId(), is(equalTo(productId)));
+        assertThat(packet.getProducts().stream().findFirst().get().getTitle(), is(equalTo(productTitle)));
+        assertThat(packet.getProducts().stream().findFirst().get().getWeight(), is(equalTo(productWeight)));
+        assertThat(packet.getProducts().stream().findFirst().get().getSize(), is(equalTo(productSize)));
+        assertThat(packet.getProducts().stream().findFirst().get().getClass(), is(equalTo(Sim.class)));
+        assertThat(((Sim) packet.getProducts().stream().findFirst().get()).getImsi(), is(equalTo(productImsi)));
     }
 }

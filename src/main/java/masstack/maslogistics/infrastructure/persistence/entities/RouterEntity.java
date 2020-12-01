@@ -5,9 +5,13 @@ import masstack.maslogistics.domain.packetAggregate.Router;
 import javax.persistence.Entity;
 import java.util.UUID;
 
-@Entity(name="routers")
+@Entity(name = "routers")
 public class RouterEntity extends ProductEntity {
-    private String brand;
+    protected String brand;
+
+    protected RouterEntity() {
+        super();
+    }
 
     protected RouterEntity(UUID id, String title, String weight, String size, String brand) {
         super(id, title, weight, size);

@@ -7,10 +7,16 @@ import java.util.UUID;
 
 @Entity(name = "sims")
 public class SimEntity extends ProductEntity {
-    private String imsi;
+    protected String imsi;
+
+    protected SimEntity() {
+        super();
+    }
 
     protected SimEntity(UUID id, String title, String weight, String size, String imsi) {
         super(id, title, weight, size);
+
+        this.imsi = imsi;
     }
 
     public String getImsi() {

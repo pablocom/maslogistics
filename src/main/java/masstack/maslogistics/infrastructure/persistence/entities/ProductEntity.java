@@ -16,7 +16,6 @@ import java.util.UUID;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class ProductEntity {
-    protected PacketEntity packet;
     @Id
     protected UUID id;
     protected String title;
@@ -28,6 +27,10 @@ public abstract class ProductEntity {
         this.title = title;
         this.weight = weight;
         this.size = size;
+    }
+
+    protected ProductEntity() {
+
     }
 
     public static List<ProductEntity> from(List<Product> products) {

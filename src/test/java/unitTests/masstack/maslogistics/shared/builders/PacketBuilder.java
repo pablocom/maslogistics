@@ -3,6 +3,8 @@ package unitTests.masstack.maslogistics.shared.builders;
 import masstack.maslogistics.domain.packetAggregate.Packet;
 import masstack.maslogistics.domain.packetAggregate.PacketDeliveryStatus;
 import masstack.maslogistics.domain.packetAggregate.Product;
+
+import java.util.List;
 import java.util.UUID;
 
 public class PacketBuilder {
@@ -12,8 +14,7 @@ public class PacketBuilder {
     private Product[] products;
 
     public Packet build() {
-        var packet = new Packet(id, description, deliveryStatus);
-        packet.addProducts(this.products);
+        var packet = new Packet(id, description, deliveryStatus, List.of(this.products));
         return packet;
     }
 

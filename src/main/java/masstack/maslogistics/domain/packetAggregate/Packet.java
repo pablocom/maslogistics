@@ -15,11 +15,11 @@ public class Packet {
         this.products = new ArrayList<>();
     }
 
-    public Packet(UUID id, String description, PacketDeliveryStatus deliveryStatus) {
+    public Packet(UUID id, String description, PacketDeliveryStatus deliveryStatus, List<Product> products) {
         this.Id = id;
         this.description = description;
         this.deliveryStatus = deliveryStatus;
-        this.products = new ArrayList<>();
+        this.products = products;
     }
 
     public void markAsCompleted() {
