@@ -1,7 +1,7 @@
 package unitTests.masstack.maslogistics.domain;
 
-import masstack.maslogistics.domain.packageAggregate.Packet;
-import masstack.maslogistics.domain.packageAggregate.PacketRepository;
+import masstack.maslogistics.domain.packetAggregate.Packet;
+import masstack.maslogistics.domain.packetAggregate.PacketRepository;
 
 import java.util.ArrayList;
 import java.util.List;

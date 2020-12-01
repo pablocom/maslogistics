@@ -1,26 +1,30 @@
 package masstack.maslogistics.infrastructure.persistence.entities;
 
-import masstack.maslogistics.domain.packageAggregate.Packet;
-import masstack.maslogistics.domain.packageAggregate.PacketDeliveryStatus;
+import masstack.maslogistics.domain.packetAggregate.Packet;
+import masstack.maslogistics.domain.packetAggregate.PacketDeliveryStatus;
+import masstack.maslogistics.domain.packetAggregate.Product;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "packets")
 public class PacketEntity implements Serializable {
     @Id
-    private UUID Id;
+    private UUID id;
     private String description;
     private PacketDeliveryStatus deliveryStatus;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "packet")
+    private List<ProductEntity> products = new ArrayList<>();
 
     public PacketEntity(Packet packet) {
-        this.Id = packet.getId();
+        this.id = packet.getId();
         this.description = packet.getDescription();
         this.deliveryStatus = packet.getDeliveryStatus();
+        this.products = ProductEntity.from(packet.getProducts());
     }
 
     // Hibernate required default constructor
@@ -35,10 +39,14 @@ public class PacketEntity implements Serializable {
     }
 
     public UUID getId() {
-        return Id;
+        return id;
+    }
+
+    public List<ProductEntity> getProducts() {
+        return this.products;
     }
 
     public Packet toDomain() {
-        return new Packet(this.Id, this.description, this.deliveryStatus);
+        return new Packet(this.id, this.description, this.deliveryStatus);
     }
 }

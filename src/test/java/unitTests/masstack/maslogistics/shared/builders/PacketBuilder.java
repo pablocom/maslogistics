@@ -1,17 +1,20 @@
 package unitTests.masstack.maslogistics.shared.builders;
 
-import masstack.maslogistics.domain.packageAggregate.Packet;
-import masstack.maslogistics.domain.packageAggregate.PacketDeliveryStatus;
-
+import masstack.maslogistics.domain.packetAggregate.Packet;
+import masstack.maslogistics.domain.packetAggregate.PacketDeliveryStatus;
+import masstack.maslogistics.domain.packetAggregate.Product;
 import java.util.UUID;
 
 public class PacketBuilder {
     private UUID id;
     private String description;
     private PacketDeliveryStatus deliveryStatus;
+    private Product[] products;
 
     public Packet build() {
-        return new Packet(id, description, deliveryStatus);
+        var packet = new Packet(id, description, deliveryStatus);
+        packet.addProducts(this.products);
+        return packet;
     }
 
     public PacketBuilder withId(UUID id) {
@@ -31,6 +34,11 @@ public class PacketBuilder {
 
     public PacketBuilder withDeliveryStatus(PacketDeliveryStatus deliveryStatus) {
         this.deliveryStatus = deliveryStatus;
+        return this;
+    }
+
+    public PacketBuilder withProducts(Product... products) {
+        this.products = products.clone();
         return this;
     }
 

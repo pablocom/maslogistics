@@ -1,7 +1,7 @@
 package masstack.maslogistics.domain.services;
 
 import masstack.maslogistics.domain.DomainException;
-import masstack.maslogistics.domain.packageAggregate.Packet;
+import masstack.maslogistics.domain.packetAggregate.Packet;
 
 import java.util.List;
 

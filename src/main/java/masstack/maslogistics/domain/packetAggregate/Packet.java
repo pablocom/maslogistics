@@ -1,23 +1,25 @@
-package masstack.maslogistics.domain.packageAggregate;
+package masstack.maslogistics.domain.packetAggregate;
 
-import java.util.UUID;
-
+import java.util.*;
 
 public class Packet {
     private UUID Id;
     private String description;
     private PacketDeliveryStatus deliveryStatus;
+    private List<Product> products;
 
     public Packet(UUID id, String description) {
         this.Id = id;
         this.description = description;
         this.deliveryStatus = PacketDeliveryStatus.PENDING;
+        this.products = new ArrayList<>();
     }
 
     public Packet(UUID id, String description, PacketDeliveryStatus deliveryStatus) {
         this.Id = id;
         this.description = description;
         this.deliveryStatus = deliveryStatus;
+        this.products = new ArrayList<>();
     }
 
     public void markAsCompleted() {
@@ -34,5 +36,14 @@ public class Packet {
 
     public PacketDeliveryStatus getDeliveryStatus() {
         return this.deliveryStatus;
+    }
+
+    public List<Product> getProducts() {
+        return this.products;
+    }
+
+    public void addProducts(Product... products) {
+        if (products != null)
+            this.products.addAll(Arrays.asList(products));
     }
 }

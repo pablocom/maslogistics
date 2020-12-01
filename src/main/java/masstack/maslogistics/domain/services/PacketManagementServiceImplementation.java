@@ -1,8 +1,8 @@
 package masstack.maslogistics.domain.services;
 
 import masstack.maslogistics.domain.DomainException;
-import masstack.maslogistics.domain.packageAggregate.Packet;
-import masstack.maslogistics.domain.packageAggregate.PacketRepository;
+import masstack.maslogistics.domain.packetAggregate.Packet;
+import masstack.maslogistics.domain.packetAggregate.PacketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

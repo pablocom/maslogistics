@@ -1,4 +1,4 @@
-package masstack.maslogistics.domain.packageAggregate;
+package masstack.maslogistics.domain.packetAggregate;
 
 import java.util.List;
 import java.util.Optional;

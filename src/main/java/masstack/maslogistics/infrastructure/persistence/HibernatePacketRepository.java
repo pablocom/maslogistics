@@ -1,7 +1,7 @@
 package masstack.maslogistics.infrastructure.persistence;
 
-import masstack.maslogistics.domain.packageAggregate.Packet;
-import masstack.maslogistics.domain.packageAggregate.PacketRepository;
+import masstack.maslogistics.domain.packetAggregate.Packet;
+import masstack.maslogistics.domain.packetAggregate.PacketRepository;
 import masstack.maslogistics.infrastructure.persistence.entities.PacketEntity;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,8 @@ public class HibernatePacketRepository implements PacketRepository {
 
     @Override
     public void saveOrUpdate(Packet packet) {
-        sessionFactory.getCurrentSession().saveOrUpdate(new PacketEntity(packet));
+        var object = new PacketEntity(packet);
+        sessionFactory.getCurrentSession().saveOrUpdate(object);
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();
     }

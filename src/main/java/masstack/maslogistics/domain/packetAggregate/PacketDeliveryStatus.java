@@ -1,4 +1,4 @@
-package masstack.maslogistics.domain.packageAggregate;
+package masstack.maslogistics.domain.packetAggregate;
 
 public enum PacketDeliveryStatus {
     DELIVERED,

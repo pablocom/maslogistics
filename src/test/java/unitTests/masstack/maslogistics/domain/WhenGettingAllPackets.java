@@ -1,7 +1,7 @@
 package unitTests.masstack.maslogistics.domain;
 
-import masstack.maslogistics.domain.packageAggregate.Packet;
-import masstack.maslogistics.domain.packageAggregate.PacketDeliveryStatus;
+import masstack.maslogistics.domain.packetAggregate.Packet;
+import masstack.maslogistics.domain.packetAggregate.PacketDeliveryStatus;
 import masstack.maslogistics.domain.services.PacketManagementServiceImplementation;
 import org.junit.jupiter.api.Test;
 import unitTests.masstack.maslogistics.shared.builders.PacketBuilder;

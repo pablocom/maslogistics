@@ -1,6 +1,6 @@
 package masstack.maslogistics.api.controllers;
 
-import masstack.maslogistics.domain.packageAggregate.Packet;
+import masstack.maslogistics.domain.packetAggregate.Packet;
 
 public class PacketDto {
     private final String id;

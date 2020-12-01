@@ -1,6 +1,6 @@
 package unitTests.masstack.maslogistics.domain;
 
-import masstack.maslogistics.domain.packageAggregate.PacketDeliveryStatus;
+import masstack.maslogistics.domain.packetAggregate.PacketDeliveryStatus;
 import masstack.maslogistics.domain.services.PacketManagementServiceImplementation;
 import org.junit.jupiter.api.Test;
 import unitTests.masstack.maslogistics.shared.builders.PacketBuilder;
@@ -38,5 +38,6 @@ public class WhenCreatingPacket extends PacketDomainTestBase {
         assertThat(packet.getId(), is(equalTo(id)));
         assertThat(packet.getDescription(), is(equalTo(description)));
         assertThat(packet.getDeliveryStatus(), is(equalTo(deliveryStatus)));
+        assertThat(packet.getProducts().size(), is(equalTo(0)));
     }
 }
