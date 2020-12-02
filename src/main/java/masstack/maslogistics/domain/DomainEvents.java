@@ -5,22 +5,22 @@ import masstack.maslogistics.application.PacketCreatedDomainEventHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DomainEventPublisher {
+public class DomainEvents {
     @SuppressWarnings("unchecked")
     private static final ThreadLocal<List> subscribers = new ThreadLocal<>();
     private static final ThreadLocal<Boolean> publishing = ThreadLocal.withInitial(() -> false);
 
-    public static DomainEventPublisher instance() {
-        return new DomainEventPublisher();
+    public static DomainEvents instance() {
+        return new DomainEvents();
     }
 
-    public DomainEventPublisher() {
+    public DomainEvents() {
         super();
         this.subscribe(new PacketCreatedDomainEventHandler());
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends DomainEvent> void publish(final T domainEvent) {
+    private <T extends DomainEvent> void publish(final T domainEvent) {
         if (publishing.get()) {
             return;
         }
@@ -44,7 +44,11 @@ public class DomainEventPublisher {
         }
     }
 
-    public DomainEventPublisher reset() {
+    public static <T extends DomainEvent> void raise(final T domainEvent) {
+        instance().publish(domainEvent);
+    }
+
+    public DomainEvents reset() {
         if (!publishing.get()) {
             subscribers.set(null);
         }

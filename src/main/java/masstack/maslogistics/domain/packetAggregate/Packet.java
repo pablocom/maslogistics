@@ -1,7 +1,7 @@
 package masstack.maslogistics.domain.packetAggregate;
 
 import masstack.maslogistics.domain.AggregateRoot;
-import masstack.maslogistics.domain.DomainEventPublisher;
+import masstack.maslogistics.domain.DomainEvents;
 import masstack.maslogistics.domain.events.PacketCreated;
 
 import java.util.*;
@@ -18,8 +18,7 @@ public class Packet implements AggregateRoot {
         this.deliveryStatus = PacketDeliveryStatus.PENDING;
         this.products = new ArrayList<>();
 
-        DomainEventPublisher.instance()
-                .publish(new PacketCreated(this.id.toString(), this.description, this.deliveryStatus));
+        DomainEvents.raise(new PacketCreated(this.id.toString(), this.description, this.deliveryStatus));
     }
 
     public Packet(UUID id, String description, PacketDeliveryStatus deliveryStatus, List<Product> products) {
@@ -28,8 +27,7 @@ public class Packet implements AggregateRoot {
         this.deliveryStatus = deliveryStatus;
         this.products = products;
 
-        DomainEventPublisher.instance()
-                .publish(new PacketCreated(this.id.toString(), this.description, this.deliveryStatus));
+        DomainEvents.raise(new PacketCreated(this.id.toString(), this.description, this.deliveryStatus));
     }
 
     public void markAsCompleted() {
