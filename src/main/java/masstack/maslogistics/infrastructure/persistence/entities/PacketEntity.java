@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "packets")
-public class PacketEntity implements Serializable {
+public class PacketEntity {
     @Id
     private UUID id;
     private String description;
