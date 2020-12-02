@@ -11,7 +11,7 @@ public class PacketBuilder {
     private UUID id;
     private String description;
     private PacketDeliveryStatus deliveryStatus;
-    private Product[] products;
+    private Product[] products = new Product[0];
 
     public Packet build() {
         var packet = new Packet(id, description, deliveryStatus, List.of(this.products));

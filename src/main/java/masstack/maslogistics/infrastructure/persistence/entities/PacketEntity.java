@@ -1,9 +1,6 @@
 package masstack.maslogistics.infrastructure.persistence.entities;
 
-import masstack.maslogistics.domain.packetAggregate.Packet;
-import masstack.maslogistics.domain.packetAggregate.PacketDeliveryStatus;
-import masstack.maslogistics.domain.packetAggregate.Product;
-import masstack.maslogistics.domain.packetAggregate.Sim;
+import masstack.maslogistics.domain.packetAggregate.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -53,7 +50,11 @@ public class PacketEntity implements Serializable {
         for (var product : this.products) {
             if (product instanceof SimEntity)
                 products.add(new Sim(product.id, product.title, product.weight, product.size, ((SimEntity)product).getImsi()));
+
+            if (product instanceof RouterEntity)
+                products.add(new Router(product.id, product.title, product.weight, product.size, ((RouterEntity)product).getBrand()));
         }
+
         return new Packet(this.id, this.description, this.deliveryStatus, products);
     }
 }

@@ -41,9 +41,4 @@ public class Packet {
     public List<Product> getProducts() {
         return this.products;
     }
-
-    public void addProducts(Product... products) {
-        if (products != null)
-            this.products.addAll(Arrays.asList(products));
-    }
 }

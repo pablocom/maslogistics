@@ -3,6 +3,7 @@ package integrationTests.masstack.maslogistics;
 import masstack.maslogistics.api.MaslogisticsApiApplication;
 import masstack.maslogistics.domain.packetAggregate.PacketDeliveryStatus;
 import masstack.maslogistics.domain.packetAggregate.PacketRepository;
+import masstack.maslogistics.domain.packetAggregate.Router;
 import masstack.maslogistics.domain.packetAggregate.Sim;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,40 +20,78 @@ import static org.hamcrest.Matchers.is;
 
 @ContextConfiguration(classes = MaslogisticsApiApplication.class)
 @SpringBootTest
+@Transactional
 public class WhenSavingPacketEntity {
     @Autowired
     private PacketRepository repository;
 
     @Test
-    void packetIsPersisted() {
-        var id = UUID.fromString("57ef2f82-65db-424e-b297-72c1e2363806");
-        var productId = UUID.fromString("47ef2f82-65db-424e-b297-72c1e2363806");
+    void packetWithoutProductsIsPersisted() {
+        var packetId = UUID.fromString("57ef2f82-65db-424e-b297-72c1e2363806");
         var description = "Some description";
         var deliveryStatus = PacketDeliveryStatus.PENDING;
 
-        var productTitle = "Title";
-        var productWeight = "Weight";
-        var productSize = "Size";
-        var productImsi = "IMSI";
-
         this.repository.saveOrUpdate(new PacketBuilder()
-                .withId(id)
+                .withId(packetId)
                 .withDeliveryStatus(deliveryStatus)
                 .withDescription(description)
-                .withProducts(new Sim(productId, productTitle, productWeight, productSize, productImsi))
                 .build());
 
-        var packet = repository.findById(id).get();
-        assertThat(packet.getId(), is(equalTo(id)));
+        var packet = repository.findById(packetId).get();
+        assertThat(packet.getId(), is(equalTo(packetId)));
+        assertThat(packet.getDescription(), is(equalTo(description)));
+        assertThat(packet.getDeliveryStatus(), is(equalTo(deliveryStatus)));
+        assertThat(packet.getProducts().size(), is(equalTo(0)));
+    }
+
+    @Test
+    void packetIsPersisted() {
+        var packetId = UUID.fromString("57ef2f82-65db-424e-b297-72c1e2363806");
+        var description = "Some description";
+        var deliveryStatus = PacketDeliveryStatus.PENDING;
+
+        var simProductId = UUID.fromString("47ef2f82-65db-424e-b297-72c1e2363806");
+        var simProductTitle = "Title";
+        var simProductWeight = "Weight";
+        var simProductSize = "Size";
+        var simProductImsi = "IMSI";
+
+        var routerProductId = UUID.fromString("37ef2f82-65db-424e-b297-72c1e2363806");
+        var routerProductTitle = "OtherTitle";
+        var routerProductWeight = "OtherWeight";
+        var routerProductSize = "OtherSize";
+        var routerProductBrand = "Samsung";
+
+        this.repository.saveOrUpdate(new PacketBuilder()
+                .withId(packetId)
+                .withDeliveryStatus(deliveryStatus)
+                .withDescription(description)
+                .withProducts(
+                        new Sim(simProductId, simProductTitle, simProductWeight, simProductSize, simProductImsi),
+                        new Router(routerProductId, routerProductTitle, routerProductWeight, routerProductSize, routerProductBrand))
+                .build());
+
+        var packet = repository.findById(packetId).get();
+        assertThat(packet.getId(), is(equalTo(packetId)));
         assertThat(packet.getDescription(), is(equalTo(description)));
         assertThat(packet.getDeliveryStatus(), is(equalTo(deliveryStatus)));
 
-        assertThat(packet.getProducts().size(), is(equalTo(1)));
-        assertThat(packet.getProducts().stream().findFirst().get().getId(), is(equalTo(productId)));
-        assertThat(packet.getProducts().stream().findFirst().get().getTitle(), is(equalTo(productTitle)));
-        assertThat(packet.getProducts().stream().findFirst().get().getWeight(), is(equalTo(productWeight)));
-        assertThat(packet.getProducts().stream().findFirst().get().getSize(), is(equalTo(productSize)));
-        assertThat(packet.getProducts().stream().findFirst().get().getClass(), is(equalTo(Sim.class)));
-        assertThat(((Sim) packet.getProducts().stream().findFirst().get()).getImsi(), is(equalTo(productImsi)));
+        assertThat(packet.getProducts().size(), is(equalTo(2)));
+
+        var simProduct = packet.getProducts().stream()
+                .filter(x -> x.getClass() == Sim.class).findFirst().get();
+        assertThat(simProduct.getId(), is(equalTo(simProductId)));
+        assertThat(simProduct.getTitle(), is(equalTo(simProductTitle)));
+        assertThat(simProduct.getWeight(), is(equalTo(simProductWeight)));
+        assertThat(simProduct.getSize(), is(equalTo(simProductSize)));
+        assertThat(((Sim) simProduct).getImsi(), is(equalTo(simProductImsi)));
+
+        var routerProduct = packet.getProducts().stream()
+                .filter(x -> x.getClass() == Router.class).findFirst().get();
+        assertThat(routerProduct.getId(), is(equalTo(routerProductId)));
+        assertThat(routerProduct.getTitle(), is(equalTo(routerProductTitle)));
+        assertThat(routerProduct.getWeight(), is(equalTo(routerProductWeight)));
+        assertThat(routerProduct.getSize(), is(equalTo(routerProductSize)));
+        assertThat(((Router) routerProduct).getBrand(), is(equalTo(routerProductBrand)));
     }
 }

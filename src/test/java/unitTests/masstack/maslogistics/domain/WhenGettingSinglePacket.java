@@ -48,7 +48,7 @@ public class WhenGettingSinglePacket extends PacketDomainTestBase {
 
         Executable testDelegate = () -> service.getPacket(nonExistingPacketId);
 
-        DomainException exception = assertThrows(DomainException.class, testDelegate);
+        var exception = assertThrows(DomainException.class, testDelegate);
         var expectedMessage = "Packet with id " + nonExistingPacketId + " not found";
         assertThat(exception.getMessage(), is(equalTo(expectedMessage)));
     }
