@@ -40,4 +40,9 @@ public class WhenCreatingPacket extends PacketDomainTestBase {
         assertThat(packet.getDeliveryStatus(), is(equalTo(deliveryStatus)));
         assertThat(packet.getProducts().size(), is(equalTo(0)));
     }
+
+    @Test
+    void packetCreatedDomainEventIsRaised() {
+
+    }
 }
