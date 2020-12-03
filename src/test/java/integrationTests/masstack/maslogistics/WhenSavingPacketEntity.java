@@ -1,6 +1,6 @@
 package integrationTests.masstack.maslogistics;
 
-import masstack.maslogistics.api.MaslogisticsApiApplication;
+import masstack.maslogistics.webapi.MaslogisticsApiApplication;
 import masstack.maslogistics.domain.packetAggregate.PacketDeliveryStatus;
 import masstack.maslogistics.domain.packetAggregate.PacketRepository;
 import masstack.maslogistics.domain.packetAggregate.Router;

@@ -1,6 +1,6 @@
 package unitTests.masstack.maslogistics.api;
 
-import masstack.maslogistics.api.controllers.PacketController;
+import masstack.maslogistics.webapi.controllers.PacketController;
 import masstack.maslogistics.domain.services.PacketManagementService;
 import org.junit.jupiter.api.Test;
 

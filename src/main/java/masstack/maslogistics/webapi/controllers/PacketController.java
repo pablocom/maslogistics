@@ -1,4 +1,4 @@
-package masstack.maslogistics.api.controllers;
+package masstack.maslogistics.webapi.controllers;
 
 import masstack.maslogistics.domain.sharedKernel.DomainException;
 import masstack.maslogistics.domain.packetAggregate.Packet;

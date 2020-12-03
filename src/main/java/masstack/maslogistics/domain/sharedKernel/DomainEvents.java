@@ -16,6 +16,7 @@ public class DomainEvents {
 
     public DomainEvents() {
         super();
+        // TODO: get all the domain event handlers resolved by currrent app context container with dependency
         this.subscribe(new PacketCreatedDomainEventHandler());
     }
 

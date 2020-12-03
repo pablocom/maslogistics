@@ -1,4 +1,4 @@
-package masstack.maslogistics.api.controllers;
+package masstack.maslogistics.webapi.controllers;
 
 public final class CreatePacketRequest {
     private String description;
