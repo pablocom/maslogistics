@@ -1,4 +1,4 @@
-package masstack.maslogistics.domain;
+package masstack.maslogistics.domain.sharedKernel;
 
 import masstack.maslogistics.application.PacketCreatedDomainEventHandler;
 

@@ -1,6 +1,6 @@
 package unitTests.masstack.maslogistics.domain;
 
-import masstack.maslogistics.domain.DomainException;
+import masstack.maslogistics.domain.sharedKernel.DomainException;
 import masstack.maslogistics.domain.packetAggregate.PacketDeliveryStatus;
 import masstack.maslogistics.domain.services.PacketManagementServiceImplementation;
 import org.hamcrest.Matchers;

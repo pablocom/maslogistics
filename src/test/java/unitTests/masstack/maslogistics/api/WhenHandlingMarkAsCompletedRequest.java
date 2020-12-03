@@ -1,7 +1,7 @@
 package unitTests.masstack.maslogistics.api;
 
 import masstack.maslogistics.api.controllers.PacketController;
-import masstack.maslogistics.domain.DomainException;
+import masstack.maslogistics.domain.sharedKernel.DomainException;
 import masstack.maslogistics.domain.services.PacketManagementService;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;

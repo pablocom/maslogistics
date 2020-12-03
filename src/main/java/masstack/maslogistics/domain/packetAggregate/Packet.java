@@ -1,7 +1,7 @@
 package masstack.maslogistics.domain.packetAggregate;
 
-import masstack.maslogistics.domain.AggregateRoot;
-import masstack.maslogistics.domain.DomainEvents;
+import masstack.maslogistics.domain.sharedKernel.AggregateRoot;
+import masstack.maslogistics.domain.sharedKernel.DomainEvents;
 import masstack.maslogistics.domain.events.PacketCreated;
 
 import java.util.*;

@@ -1,6 +1,6 @@
 package masstack.maslogistics.api.controllers;
 
-import masstack.maslogistics.domain.DomainException;
+import masstack.maslogistics.domain.sharedKernel.DomainException;
 import masstack.maslogistics.domain.packetAggregate.Packet;
 import masstack.maslogistics.domain.services.PacketManagementService;
 import org.springframework.beans.factory.annotation.Autowired;

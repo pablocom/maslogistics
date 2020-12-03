@@ -1,6 +1,6 @@
 package masstack.maslogistics.domain.events;
 
-import masstack.maslogistics.domain.DomainEvent;
+import masstack.maslogistics.domain.sharedKernel.DomainEvent;
 import masstack.maslogistics.domain.packetAggregate.PacketDeliveryStatus;
 
 import java.util.UUID;
